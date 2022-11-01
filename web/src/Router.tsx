@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 
-import { Home } from "./pages/Home"
+import { Home } from "./pages/home/Home"
 import { Other } from "./pages/Other"
 import { NotFound } from "./pages/NotFound"
 

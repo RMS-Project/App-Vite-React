@@ -14,6 +14,13 @@ npm install react-router-dom
 npm run dev --host
 ```
 
+**Componentes prontos React**
+```
+https://x-team.com/blog/best-react-component-libraries/
+```
+
+https://evergreen.segment.com/components
+
 ~~Reaact Redux~~
 
 ~~npm install @reduxjs/toolkit react-redux~~
@@ -21,3 +28,5 @@ npm run dev --host
 ~~npm install @types/react-redux -D~~
 
 ~~https://dev.to/franciscomendes10866/build-a-ssr-app-with-react-react-router-and-vite-1c6l~~
+
+https://github.com/vinnydeveloper?tab=repositories
