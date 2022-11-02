@@ -1,3 +1,6 @@
+// Utilize o componente Link para não ocorrer o recarregamento da página.
+import { Link as LinkRouter } from "react-router-dom"
+
 interface LinkProps {
     text: string
     redirect: string
@@ -5,8 +8,8 @@ interface LinkProps {
 
 export default function Link(props :LinkProps) {
     return (
-        <a href={props.redirect} rel="noreferrer">
+        <LinkRouter to={props.redirect}>
             {props.text}
-        </a>
+        </LinkRouter>
     )
 }

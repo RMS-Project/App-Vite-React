@@ -1,39 +1,39 @@
-.login h1 {
+.account h1 {
     text-align: center;
     font-size: 25pt;
 }
 
-.login form {
+.account form {
     display: flex;
     flex-direction: column;
 }
 
-.login label {
+.account label {
     margin-top: 10px;
 }
 
-.login input {
+.account input {
     width: 18em;
     margin: 10px 0px;
     padding: 14px;
     font-size: 14pt;
     background-color: rgb(43, 43, 43);
-    color: #fff;
     border: none;
+    color: #fff;
 }
 
-.login button {
+.account button {
     margin: 20px 0px;
     padding: 14px;
     font-size: 14pt;
     color: #fff;
 }
 
-.login .links {
+.account .links {
     display: flex;
     flex-direction: column;
 }
 
-.login .links a {
+.account .links a {
     margin: 5px 0px;
 }

@@ -13,54 +13,32 @@ interface loginForm{
 }
 
 export const Home = () => {
+
+  // useState - Retorna um Array.
+  // Um estado sempre sobrescreve o anterior.
+  // Quando se deseja acumular valores utilize ex: "[...email, email]".
+  // OBS: Tudo o que estava anteriormente mais o novo.
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
   const [form, handleForm] = useState<loginForm>()
 
-  function getForm() {
-    /*handleForm([
-      ...form,
-      {
-        email: email,
-        password: password
-      }
-    ])*/
+  function getForm(event :React.FormEvent) {
+    event.preventDefault()
+    handleForm({
+      email: email,
+      password: password
+    })
+
+    // Aqui enviamos para a rota do servidor.
+
+    if (form?.password == '123') {
+      console.log(form)
+      return
+    }
+
+    console.log("Senha incorreta")
   }
-
-  /*return (
-      <div className='login'>
-
-        <h1>Login</h1>
-
-        <form onSubmit={ handleForm }>
-
-          <label htmlFor="email">E-mail: </label>
-          <input
-            required={true}
-            value={ email }
-            onChange={ handleEmail }
-            name="email"
-            type="email" 
-          />
-
-          <label htmlFor="password">Senha: </label>
-          <input
-            required={true}
-            value={ password }
-            onChange={ handlePassword } 
-            name="password" 
-            type="password" />
-
-          <button
-            type='submit' 
-          >
-            Enviar
-          </button>
-
-        </form>
-      </div>
-    )*/
 
     return ( 
       <div className='login'>
@@ -68,7 +46,7 @@ export const Home = () => {
         <BackgroundImage />
         <h1>Login</h1>
 
-        <form onSubmit={ getForm }>
+        <form onSubmit={getForm}>
 
           <label htmlFor="email">E-mail: </label>
           <input
@@ -88,16 +66,14 @@ export const Home = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
 
-          <button
-            type='submit' 
-          >
-            Enviar
+          <button type='submit'>
+            Entrar
           </button>
         </form>
         
         <div className='links'>
-          <Link text="Não consegue entrar?" redirect="#"/>
-          <Link text="Criar conta" redirect="#"/>
+          <Link text="Não consegue entrar?" redirect="/other"/>
+          <Link text="Criar conta" redirect="/account/Usuário"/>
         </div>
       </div>
     )
