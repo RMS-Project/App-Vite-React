@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { FormEvent, useState } from 'react';
+import { FormEncType, useParams } from 'react-router-dom'
 
 import Link from '../../components/Link';
+import { accountUser } from '../../services/MainApi/users';
 
 // Importação do estilo CSS
 import './account.css'
 
 // Importação de imagens OBS: As imagens são tratadas como componentes.
-import BackgroundImage from '../../components/RocketSVG/RocketSVG'
+// import BackgroundImage from '../../components/RocketSVG/RocketSVG'
 
 interface accountForm{
   name            :string
@@ -26,13 +27,37 @@ export const Account = () => {
 
   const [form, handleForm] = useState<accountForm>()
 
+  const account = async (event :FormEvent) => {
+    event.preventDefault()
+
+    const payload = {
+      name,
+      email,
+      password
+    }
+
+    try {
+
+      const response = await accountUser(payload)
+      
+      if (response.status !== 201) {
+        return alert("Deu Algo errado.")
+      }
+
+      alert("Cadastro efetuado com sucesso!")
+      
+    } catch (error) {
+      alert("Deu Algo errado.")
+    }
+  }
+
   return (
     <div className='account'>
 
       <h1>Criar conta</h1>
       <h2>Olá {params.name}</h2>
 
-      <form>
+      <form onSubmit={account}>
         <label htmlFor="name">Nome: </label>
         <input
           required={true}
@@ -69,9 +94,7 @@ export const Account = () => {
           onChange={(event) => setConfirmPassword(event.target.value)}
         />
 
-        <button
-          type='submit' 
-        >
+        <button type='submit'>
           Criar
         </button>
       </form>
