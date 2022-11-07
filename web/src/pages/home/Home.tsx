@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import Link from '../../components/Link';
 
+
 // Importação do estilo CSS
 import './home.css'
 
 // Importação de imagens OBS: As imagens são tratadas como componentes.
 import BackgroundImage from '../../components/RocketSVG/RocketSVG'
+import { login } from '../../services/MainApi/login';
 
-interface loginForm{
+/*interface loginForm{
   email: string
   password: string
-}
+}*/
 
 export const Home = () => {
 
@@ -21,23 +23,35 @@ export const Home = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
-  const [form, handleForm] = useState<loginForm>()
+  //const [form, handleForm] = useState<loginForm>()
 
-  function getForm(event :React.FormEvent) {
+  async function getForm(event :React.FormEvent) {
     event.preventDefault()
-    handleForm({
+
+    // Redux
+    try {
+      const response = await login({ email, password })
+      console.log(response.data)
+
+      alert("Deu certo")
+
+    } catch (error) {
+      alert("Deu algo errado")
+    }
+
+    // Aqui enviamos para a rota do servidor.
+
+    /*handleForm({
       email: email,
       password: password
     })
-
-    // Aqui enviamos para a rota do servidor.
 
     if (form?.password == '123') {
       console.log(form)
       return
     }
 
-    console.log("Senha incorreta")
+    console.log("Senha incorreta")*/
   }
 
     return ( 
