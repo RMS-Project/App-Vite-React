@@ -1,10 +1,10 @@
 // Permite criar o objeto e as reduxes.
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,  } from "@reduxjs/toolkit";
 
 interface UserState {
-  token?: string;
-  email?: string;
-  isLogged: boolean;
+  token?: string,
+  email?: string,
+  isLogged: boolean
 }
 
 const userReduce = createSlice({
@@ -20,7 +20,7 @@ const userReduce = createSlice({
   reducers: {
     // Recebe um estado e uma ação.
     // Pega o estado antigo e substitui pelo novo.
-    setUser(state, action) {
+    addUser(state, action) {
       // Object.assign - Método que faz a substituição
       Object.assign(state, {
         // Por padrão o action recebe o payload
@@ -43,6 +43,6 @@ const userReduce = createSlice({
   },
 });
 
-export const { setUser, removeUser } = userReduce.actions;
+export const { addUser, removeUser } = userReduce.actions;
 
 export default userReduce.reducer;

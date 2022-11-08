@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Hook - Dispara um ação do Redux.
 import { useDispatch } from 'react-redux';
 // Configuração do store Redux de usuários.
-import { setUser } from '../../store/modules/user/storeUser';
+import { addUser } from '../../store/modules/user/storeUser';
 
 import Link from '../../components/Link';
 
@@ -43,13 +43,11 @@ export const Home = () => {
     try {
       const response = await login({ email, password })
 
-      console.log(response)
-
       // Faz a troca dos dados do usuário
       // no store do redux.
       // Para ver os dados no navegador utilize a extensão
       // para o navegador - Redux dev tools.
-      dispatch(setUser({
+      dispatch(addUser({
         token: response.data,
         email
       }))

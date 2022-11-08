@@ -1,7 +1,7 @@
 import baseAPI from "./config"
 
 interface UserPayload {
-  id       :string
+  //id       :string
   name     :string
   email    :string
   password :string
