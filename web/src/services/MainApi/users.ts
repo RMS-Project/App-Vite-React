@@ -10,6 +10,11 @@ export function accountUser(payload :UserPayload) {
   return baseAPI.post('/news-api/v1/user', payload)
 }
 
-export function listUsers() {
-  return baseAPI.get('/news-api/v1/users')
+// Rota autenticada no servidor.
+export function listUsers(token :string) {
+  return baseAPI.get('/news-api/v1/users', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
 }

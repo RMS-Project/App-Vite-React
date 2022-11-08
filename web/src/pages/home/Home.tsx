@@ -1,6 +1,11 @@
 import { useState } from 'react';
-import Link from '../../components/Link';
 
+// Hook - Dispara um ação do Redux.
+import { useDispatch } from 'react-redux';
+// Configuração do store Redux de usuários.
+import { setUser } from '../../store/modules/user/storeUser';
+
+import Link from '../../components/Link';
 
 // Importação do estilo CSS
 import './home.css'
@@ -22,6 +27,7 @@ export const Home = () => {
   // OBS: Tudo o que estava anteriormente mais o novo.
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const dispatch = useDispatch()
 
   //const [form, handleForm] = useState<loginForm>()
 
@@ -31,7 +37,15 @@ export const Home = () => {
     // Redux
     try {
       const response = await login({ email, password })
-      console.log(response.data)
+
+      // Faz a troca dos dados do usuário
+      // no store do redux.
+      // Para ver os dados no navegador utilize a extensão
+      // para o navegador - Redux dev tools.
+      dispatch(setUser({
+        token: response.data,
+        email
+      }))
 
       alert("Deu certo")
 
