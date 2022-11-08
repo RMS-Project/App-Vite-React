@@ -25,6 +25,7 @@ export default function UserList() {
         // Passa o token para a função que chama a API para verificar se
         // existe um usuário conectado. Pois é uma rota autenticada.
         const response = await listUsers(userLogIn.token)
+        //const response = await listUsers("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJybXNAbG9jYWxob3N0LmNvbSIsImlhdCI6MTY2NzgzMTE1OX0.k5L6A92T98cqZip6qeua1LJMToIQ-R0B8JjCl7crw2I")
       
         setUsers(response.data)
       
@@ -42,7 +43,7 @@ export default function UserList() {
       <p>O email do usuário logado é: {userLogIn.email}</p>
       <ul>
         {users.map((user) => (
-          <div id={user.id}>
+          <div key={user.id}>
             <li>{user.name}</li>
             <li>{user.email}</li>
           </div>

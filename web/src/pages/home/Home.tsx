@@ -14,6 +14,9 @@ import './home.css'
 import BackgroundImage from '../../components/RocketSVG/RocketSVG'
 import { login } from '../../services/MainApi/login';
 
+// Envia o usuário para outra rota.
+import { useNavigate } from "react-router-dom";
+
 /*interface loginForm{
   email: string
   password: string
@@ -29,6 +32,8 @@ export const Home = () => {
   const [password, setPassword] = useState<string>("")
   const dispatch = useDispatch()
 
+  const navigate = useNavigate()
+
   //const [form, handleForm] = useState<loginForm>()
 
   async function getForm(event :React.FormEvent) {
@@ -37,6 +42,8 @@ export const Home = () => {
     // Redux
     try {
       const response = await login({ email, password })
+
+      console.log(response)
 
       // Faz a troca dos dados do usuário
       // no store do redux.
@@ -47,7 +54,10 @@ export const Home = () => {
         email
       }))
 
-      alert("Deu certo")
+      //alert("Deu certo")
+
+      // Redireciona o usuário para a rota autenticada.
+      return navigate("/users")
 
     } catch (error) {
       alert("Deu algo errado")
