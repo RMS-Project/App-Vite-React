@@ -34,6 +34,20 @@ export const Home = () => {
 
   const navigate = useNavigate()
 
+  // Exemplo de local storage assíncrono.
+  const asyncLocalStorage = {
+    setItem: async (key :string, value :string) => {
+      await Promise.resolve();
+      localStorage.setItem(key, value);
+    },
+
+    getItem: async (key :string) => {
+      await Promise.resolve();
+      return localStorage.getItem(key);
+    }
+  }
+
+
   //const [form, handleForm] = useState<loginForm>()
 
   async function getForm(event :React.FormEvent) {
@@ -51,6 +65,11 @@ export const Home = () => {
         token: response.data,
         email
       }))
+
+      // Armazenar o token na memória do navegador
+
+      await asyncLocalStorage.setItem("Bearer", response.data)
+      await asyncLocalStorage.setItem("email", email)
 
       //alert("Deu certo")
 
